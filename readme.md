@@ -3,8 +3,6 @@
 
 Tested with Big Buck Bunny 360 webm, only vp8 works. vp9 and av1 made error "Bitstream not supported by this decoder".
 
-I'm certainly no pen FL expert so there might be better/different ways to do this. I based the sample on the example code in the readme of here https://github.com/HaxeExtension/extension-webm.
-
 To use same video download this and place in assets directory - https://test-videos.co.uk/vids/bigbuckbunny/webm/vp8/360/Big_Buck_Bunny_360_10s_1MB.webm - or provice your own and edit `webmPath` in `PlayState.hx`.
 
 ## Dependencies
