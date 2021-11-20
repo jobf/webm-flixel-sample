@@ -1,22 +1,15 @@
 package;
 
-import webm.WebmIo;
-import webm.WebmEvent;
-import flixel.FlxBasic;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
-import openfl.display.Bitmap;
-import openfl.display.Sprite;
+import webm.WebmEvent;
 import webm.WebmIoFile;
 import webm.WebmPlayer;
 
 /**
  * A extension of `FlxSprite` that can display a video from a .webm file.
  */
-class FlxVideo extends FlxSprite {
-
+class FlxVideo extends FlxSprite
+{
 	/**
 	 * The path to the webm file
 	 */
@@ -26,6 +19,7 @@ class FlxVideo extends FlxSprite {
 	 * The webm file
 	 */
 	var io:WebmIoFile;
+
 	/**
 	 * The webm player
 	 */
@@ -107,9 +101,27 @@ class FlxVideo extends FlxSprite {
 		ended = true;
 	}
 
+	/**
+	 * Start video playback	
+	**/
 	public function play()
 	{
 		player.play();
 	}
 
+	/**
+	 * Stop video playback (todo, after some edits to WebmPlayer?)
+	**/
+	// public function stop()
+	// {
+	// 	player.stop();
+	// }
+
+	/**
+	 * Restart video playback	
+	**/
+	public function restart()
+	{
+		player.restart();
+	}
 }
