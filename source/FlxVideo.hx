@@ -60,6 +60,13 @@ class FlxVideo extends FlxSprite {
 		}
 	}
 
+	override function destroy()
+	{
+		@:privateAccess
+		player.dispose();
+		super.destroy();
+	}
+
 	/**
 	 * Called when video playback begins
 	 * @param e WebmEvent
