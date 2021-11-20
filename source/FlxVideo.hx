@@ -40,7 +40,7 @@ class FlxVideo extends FlxSprite {
 	 * Create a new `FlxVideo` instance
 	 * @param webmPath The path to the webm file
 	 */
-	public function new(x:Float = 0, y:Float = 0, webmPath:String)
+	public function new(x:Float = 0, y:Float = 0, webmPath:String, autoPlay:Bool = false)
 	{
 		this.webmPath = webmPath;
 
@@ -53,8 +53,11 @@ class FlxVideo extends FlxSprite {
 		player.addEventListener(WebmEvent.COMPLETE, onComplete);
 
 		super(x, y, player.bitmapData);
-		player.play();
-		
+
+		if (autoPlay)
+		{
+			player.play();
+		}
 	}
 
 	/**
@@ -96,4 +99,10 @@ class FlxVideo extends FlxSprite {
 		trace("complete");
 		ended = true;
 	}
+
+	public function play()
+	{
+		player.play();
+	}
+
 }
