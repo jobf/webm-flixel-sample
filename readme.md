@@ -7,9 +7,13 @@ To use same video download this and place in assets directory - https://test-vid
 
 ## Dependencies
 
+When exposing stop and restart via the FlxVideo class I found that calls to stop would crash the code. Quick fix for this was to prevent calling `WebmPlayer.dispose` in `WebmPlayer.stop`.
+
+To that end I have forked the original haxelib extension and pushed the change.
+
 ```
 ## install the haxelib from git
-haxelib git extension-webm git@github.com:HaxeExtension/extension-webm.git
+haxelib git extension-webm https://github.com/jobf/extension-webm.git
 
 # then build for your target, e.g. linux (replace with windows if on windows)
 lime rebuild extension-webm linux
