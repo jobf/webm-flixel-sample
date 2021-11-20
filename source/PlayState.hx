@@ -1,12 +1,8 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.FlxState;
-import openfl.display.Bitmap;
-import openfl.display.Sprite;
-import webm.WebmIoFile;
-import webm.WebmPlayer;
+import flixel.ui.FlxButton;
 
 class PlayState extends FlxState
 {
@@ -16,32 +12,27 @@ class PlayState extends FlxState
 
 		// must be vp8 webm
 		var webmPath = "assets/Big_Buck_Bunny_360_10s_1MB.webm";
+		var autoPlay = false;
+		var video = new FlxVideo(webmPath, autoPlay);
+		video.screenCenter();
+		add(video);
 
-		// set up the player
-		var io:WebmIoFile = new WebmIoFile(webmPath);
-		var player:WebmPlayer = new WebmPlayer(io);
-
-		// listen to some events (optional)
-		player.addEventListener('play', function(e)
+		var buttonsY = FlxG.height - 30;
+		add(new FlxButton(10, buttonsY, "PLAY", () ->
 		{
-			trace('play!');
-		});
-		player.addEventListener('end', function(e)
-		{
-			trace('end!');
-		});
-		player.addEventListener('stop', function(e)
-		{
-			trace('stop!');
-		});
+			video.play();
+		}));
 
-		// WebmPlayer extends Bitmap
-		// so FlxSprite can be created from the underlying BitmapData
-		var sprite = new FlxSprite(player.bitmapData);
-		add(sprite);
+		// todo, after some edits to WebmPlayer?
+		// add(new FlxButton(100, buttonsY, "STOP", () ->
+		// {
+		// 	video.stop();
+		// }));
 
-		// play the video
-		player.play();
+		add(new FlxButton(190, buttonsY, "RESTART", () ->
+		{
+			video.restart();
+		}));
 	}
 
 	override public function update(elapsed:Float)
