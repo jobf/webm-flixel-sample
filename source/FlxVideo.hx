@@ -47,9 +47,10 @@ class FlxVideo extends FlxSprite {
 		io = new WebmIoFile(webmPath);
 		player = new WebmPlayer(io, true);
 
-		player.addEventListener('play', onPlay);
-		player.addEventListener('stop', onStop);
-		player.addEventListener('end', onComplete);
+		player.addEventListener(WebmEvent.PLAY, onPlay);
+		player.addEventListener(WebmEvent.STOP, onStop);
+		player.addEventListener(WebmEvent.RESTART, onRestart);
+		player.addEventListener(WebmEvent.COMPLETE, onComplete);
 
 		super(x, y, player.bitmapData);
 		player.play();
@@ -57,28 +58,41 @@ class FlxVideo extends FlxSprite {
 	}
 
 	/**
-	 * Callback to run once the video plays
-	 * @param e Webm Event
+	 * Called when video playback begins
+	 * @param e WebmEvent
 	 */
-	function onPlay(e:WebmEvent) {
+	function onPlay(e:WebmEvent)
+	{
 		trace("playing");
 		ended = false;
 	}
 
 	/**
-	 * Callback to run once the video ends
-	 * @param e Webm Event
+	 * Called when video playback stops
+	 * @param e WebmEvent
 	 */
-	function onStop(e:WebmEvent) {
+	function onStop(e:WebmEvent)
+	{
 		trace("stopping");
 		ended = true;
 	}
 
 	/**
-	 * Not used by the code
-	 * @param e Webm Event
+	 * Called when video playback is restarted
+	 * @param e WebmEvent
 	 */
-	function onComplete(e:WebmEvent) {
+	function onRestart(e:WebmEvent)
+	{
+		trace("restart");
+		ended = true;
+	}
+
+	/**
+	 * Called when the last frame of video has been played
+	 * @param e WebmEvent
+	 */
+	function onComplete(e:WebmEvent)
+	{
 		trace("complete");
 		ended = true;
 	}
